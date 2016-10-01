@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
     // This class is used to fade the entire screen to black (or
     // any chosen colour).  It should be used to smooth out the
@@ -27,7 +28,11 @@ using UnityEngine.Audio;
 
 
         public bool IsFading { get { return m_IsFading; } }
-
+		
+		public float getFadeDuration()
+		{
+			return m_FadeDuration;
+		}
 
         private void Awake()
         {
@@ -162,4 +167,19 @@ using UnityEngine.Audio;
             if (OnFadeComplete != null)
                 OnFadeComplete();
         }
+
+	public void FadeToNewScene(string NextSceneName)
+	{
+		StartCoroutine (TransitionToNewScene (NextSceneName));
+	}
+
+	private IEnumerator TransitionToNewScene(string NewScene)
+	{
+		FadeOut (true);
+		yield return new WaitForSeconds (m_FadeDuration);
+		SceneManager.LoadScene (NewScene);
+
+	}
+			
+
     }

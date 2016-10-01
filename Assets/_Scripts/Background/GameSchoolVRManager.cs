@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameSchoolVRManager : MonoBehaviour {
 	private GameObject GSText;
@@ -35,8 +36,9 @@ public class GameSchoolVRManager : MonoBehaviour {
 	{
 		GSButton = Resources.Load ("Button") as GameObject;
 		Vector3 cameraFront = Camera.main.transform.forward* 5;
-		GameObject newText = Instantiate (GSButton, cameraFront, Quaternion.identity) as GameObject;
-		newText.gameObject.GetComponent<LookAtCamera> ().LookAt (Camera.main.gameObject);
+		GameObject newButton = Instantiate (GSButton, cameraFront, Quaternion.identity) as GameObject;
+		newButton.gameObject.GetComponent<LookAtCamera> ().LookAt (Camera.main.gameObject);
+//		newButton.GetComponent<Button> ().onClick.AddListener (() => Camera.main.GetComponent<VRFadeScreen> ().FadeToNewScene ("FinishedScene"));
 	}
 
 

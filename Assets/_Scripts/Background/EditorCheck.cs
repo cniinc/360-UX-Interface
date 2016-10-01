@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.VR;
+using UnityEngine.SceneManagement;
 
 public class EditorCheck : MonoBehaviour {
 	bool firstUpdateFrame = true;
@@ -26,6 +27,20 @@ public class EditorCheck : MonoBehaviour {
 
 		}
 	
+	}
+
+	public void StartTransitionToNewScene(string NextSceneName)
+	{
+		
+		StartCoroutine (Transition (NextSceneName));
+	}
+
+	IEnumerator Transition(string NextScene)
+	{
+		VRFadeScreen VRFS = GetComponent<VRFadeScreen> ();
+		VRFS.FadeOut (true);
+		yield return new WaitForSeconds (VRFS.getFadeDuration ());
+		SceneManager.LoadScene (NextScene);
 	}
 
 }
