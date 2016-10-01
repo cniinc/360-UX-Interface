@@ -14,13 +14,10 @@ public class EditorCheck : MonoBehaviour {
 		if (firstUpdateFrame) {
 			firstUpdateFrame = false;
 			#if UNITY_ANDROID
-
 				GetComponent<SimpleSmoothMouseLook> ().enabled = false;
-				Debug.Log ("Turning off SimpleSmoothMouseLook because " + VRDevice.model + " detected");
-
 			#endif
 			#if UNITY_EDITOR	
-			GetComponent<SimpleSmoothMouseLook>().enabled = true;
+				GetComponent<SimpleSmoothMouseLook>().enabled = true;
 				GetComponent<GvrHead> ().trackRotation = false;
 				GetComponentInChildren<GvrViewer> ().VRModeEnabled = false;
 			#endif
