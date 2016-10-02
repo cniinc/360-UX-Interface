@@ -29,18 +29,4 @@ public class EditorCheck : MonoBehaviour {
 	
 	}
 
-	public void StartTransitionToNewScene(string NextSceneName)
-	{
-		
-		StartCoroutine (Transition (NextSceneName));
-	}
-
-	IEnumerator Transition(string NextScene)
-	{
-		VRFadeScreen VRFS = GetComponent<VRFadeScreen> ();
-		VRFS.FadeOut (true);
-		yield return new WaitForSeconds (VRFS.getFadeDuration ());
-		SceneManager.LoadScene (NextScene);
-	}
-
 }
